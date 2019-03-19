@@ -1,0 +1,6 @@
+version: "2.1"
+
+services:
+  web:
+    ports:
+      - "82:80"

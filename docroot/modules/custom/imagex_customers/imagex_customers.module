@@ -1,0 +1,24 @@
+<?php
+
+/**
+ * @file
+ * Contains imagex_customers.module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function imagex_customers_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the imagex_customers module.
+    case 'help.page.imagex_customers':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('ImageX test project') . '</p>';
+      return $output;
+
+    default:
+  }
+}
