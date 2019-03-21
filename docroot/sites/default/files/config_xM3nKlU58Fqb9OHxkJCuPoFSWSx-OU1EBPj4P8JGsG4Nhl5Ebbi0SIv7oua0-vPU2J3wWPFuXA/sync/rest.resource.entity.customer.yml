@@ -1,0 +1,23 @@
+uuid: 5b7a045e-256e-459f-b30a-b124d23d9d65
+langcode: en
+status: true
+dependencies:
+  module:
+    - basic_auth
+    - imagex_customers
+    - serialization
+    - user
+id: entity.customer
+plugin_id: 'entity:customer'
+granularity: resource
+configuration:
+  methods:
+    - GET
+    - POST
+    - DELETE
+    - PATCH
+  formats:
+    - json
+  authentication:
+    - basic_auth
+    - cookie

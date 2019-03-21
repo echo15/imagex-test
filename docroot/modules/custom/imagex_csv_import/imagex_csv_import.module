@@ -1,0 +1,45 @@
+<?php
+
+/**
+ * @file
+ * Contains imagex_csv_import.module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\imagex_csv_import\CSVBatchImport;
+
+/**
+ * Implements hook_help().
+ */
+function imagex_csv_import_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the imagex_csv_import module.
+    case 'help.page.imagex_csv_import':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('ImageX CSV Import') . '</p>';
+      return $output;
+
+    default:
+  }
+}
+
+/**
+ * Implements hook_cron().
+ */
+function imagex_csv_import_cron() {
+  $csv_import_config = Drupal::config('imagex_csv_import.import');
+  $next_execution = \Drupal::state()->get('imagex_csv_import.imagex_csv_cron_execution');
+  $next_execution = !empty($next_execution) ? $next_execution : 0;
+  if (REQUEST_TIME >= $next_execution) {
+    \Drupal::logger('imagex_csv_import')->notice('imagex_csv_import_cron ran');
+    $fid = $csv_import_config->get('fid');
+    $skip_first_line = $csv_import_config->get('skip_first_line');
+    $delimiter = $csv_import_config->get('delimiter');
+    $enclosure = $csv_import_config->get('enclosure');
+    $import = new CSVBatchImport($fid, $skip_first_line, $delimiter, $enclosure);
+    $import->setBatch();
+    $interval = 3600;
+    \Drupal::state()->set('imagex_csv_import.imagex_csv_cron_execution', REQUEST_TIME + $interval);
+  }
+}

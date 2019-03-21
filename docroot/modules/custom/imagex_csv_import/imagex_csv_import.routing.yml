@@ -1,0 +1,7 @@
+imagex_csv_import.admin_settings:
+  path: '/csv_import/form'
+  defaults:
+    _form: '\Drupal\imagex_csv_import\Form\ImportForm'
+    _title: 'Import Form'
+  requirements:
+    _permission: 'access content'

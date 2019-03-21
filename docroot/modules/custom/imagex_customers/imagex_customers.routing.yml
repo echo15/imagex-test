@@ -1,0 +1,16 @@
+
+imagex_customers.customers_page_controller:
+  path: '/imagex/customers/{customer_id}'
+  defaults:
+    _controller: '\Drupal\imagex_customers\Controller\CustomersPageController::customersPage'
+    _title: 'Customers'
+  requirements:
+    _permission: 'access content'
+
+imagex_customers.all_customers_page_controller:
+  path: '/imagex/customers'
+  defaults:
+    _controller: '\Drupal\imagex_customers\Controller\CustomersPageController::allCustomersPage'
+    _title: 'Customers'
+  requirements:
+    _permission: 'access content'
