@@ -32,3 +32,8 @@ click «Save configuration»
 
 You can import customers from form directly.
 Also this form stores patch to CSV file for cron.
+
+
+View: 
+/imagex/customers
+/imagex/customers/1
